@@ -5,6 +5,7 @@ from darksky.api import DarkSky, DarkSkyAsync
 from darksky.types import languages, units, weather
 from dotenv import load_dotenv
 from geopy.geocoders import Nominatim
+from util.db_client import  DBClient
 
 # CONSTANTS
 load_dotenv()
@@ -26,7 +27,7 @@ def get_lat_long(location_str: str):
         return None
 
 
-def get_weather_data(lat, long):
+def get_weather_data(lat, long, db:DBClient):
     """
     Given a location, get the weather data for the next 48 hrs.
     :param lat: latitude
@@ -47,6 +48,11 @@ def get_weather_data(lat, long):
             data['latitude'] = lat
             data['longitude'] = long
             hourly_weather_data.append(data)
+
+        # Lets save the weather data while were at it
+        for data in hourly_weather_data:
+            db.weather_container.create_item(data)
+
         return hourly_weather_data
     except Exception as e:
         print(e)

@@ -14,7 +14,10 @@ geopy = "*"
 darksky-weather = "*"
 python-dotenv = "*"
 nltk = "*"
-azure-cosmos = "*"
+azure-cosmos ="==4.0.0b6"
 
 [requires]
 python_version = "3.7"
+
+[pipenv]
+allow_prereleases = true
