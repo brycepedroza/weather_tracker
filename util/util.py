@@ -66,4 +66,4 @@ def twitter_created_at_to_epoch(created_at):
     except ValueError:
         return None
 
-def get_sentiment(tweet):
+

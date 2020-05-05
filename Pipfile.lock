@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6ae0d1644dc32b5e7a8c6fdd177f836cbceb3450ddf51c564c3effe711beb86d"
+            "sha256": "46f01a7005c97b6b75336a4a1e3255dd562db6dcb7b1b937ffc1b40f568b1388"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -56,6 +56,15 @@
                 "sha256:f7b7ce16570fe9965acd6d30101a28f62fb4a7f9e926b3bbc9b61f8b04247e72"
             ],
             "version": "==19.3.0"
+        },
+        "azure-cosmos": {
+            "hashes": [
+                "sha256:4905cb00a834e86338bc611e2f278bb12834812801c6a420b973c5f821ce283c",
+                "sha256:7f8ac99e4e40c398089fc383bfadcdc83376f72b88532b0cac0b420357cd08c7",
+                "sha256:bac7de8fa84a3e34b6814cdadbb5ce99653874c27180f5fa596363a8dc1945db"
+            ],
+            "index": "pypi",
+            "version": "==3.1.2"
         },
         "certifi": {
             "hashes": [
