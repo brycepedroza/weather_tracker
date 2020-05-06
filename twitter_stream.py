@@ -2,9 +2,12 @@ from util.util import *
 from util.db_client import DBClient
 from util.tweet_sentiment_classifier import TweetSentimentClassifier
 from util.tweet_weather_classifer import TweetWeatherClassifier
+from dotenv import load_dotenv
 import tweepy
 import time
+from urllib3.exceptions import ReadTimeoutError
 
+load_dotenv()
 
 PHX = [-112.524719,33.275435,-111.619720,33.800832]
 CA_AZ_NV_UT = [-126.079102,31.090574,-108.720703,42.779275]
@@ -40,9 +43,14 @@ class Listener(tweepy.StreamListener):
         if has_keyword(tweet):
             weather = self.weather_classifier.predict(tweet)
             if weather == 1:
-                self.count += 1
-                db_data = self.prepare_data(status, tweet)
-                self.db_client.tweet_container.create_item(body=db_data)
+                print(tweet)
+                try:
+                    db_data = self.prepare_data(status, tweet)
+                    self.db_client.tweet_container.create_item(body=db_data)
+                    self.count += 1
+                except Exception as e:
+                    print(f"Something went wrong with tweet. "
+                          f"{e}\nContinuing...")
 
     def on_error(self, status_code):
         print(status_code)
@@ -83,7 +91,11 @@ def main():
     my_stream = tweepy.Stream(auth=api.auth, listener=listener)
     start = time.time()
     try:
-        my_stream.filter(locations=US)
+        while True:
+            try:
+                my_stream.filter(locations=US)
+            except ReadTimeoutError:
+                continue
     except KeyboardInterrupt as e:
         print("Stopped.")
     finally:

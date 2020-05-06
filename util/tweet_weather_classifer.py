@@ -12,6 +12,7 @@ class TweetWeatherClassifier:
         self.training_data = read_data(training_path, COLUMNS)
         self.vectorizer = CountVectorizer()
         self.vectorizer.fit(self.training_data)
+        self.score = 0
         self.classifier = self.train()
 
     def train(self):
@@ -27,7 +28,7 @@ class TweetWeatherClassifier:
         classifier = LogisticRegression()
         classifier.fit(x_train, y_train)
         score = classifier.score(x_test, y_test)
-        print("Accuracy:", score)
+        self.score = score
 
         return classifier
 
