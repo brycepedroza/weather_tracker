@@ -1,7 +1,7 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-
+import pandas as pd
 
 FILE_NAME = "./backend_workflows/output/classified_data.csv"
 COLUMNS = ["weather", "tweet"]
@@ -51,3 +51,10 @@ def read_data(path, names):
     """
     return pd.read_csv(
         path, usecols=names, sep=",", header=0)
+
+
+if __name__ == "__main__":
+    x = TweetWeatherClassifier("../backend_workflows/output/classified_data.csv")
+    custom_tweet = "Escondido CA Tue May 5th PM Forecast: TONIGHT Mostly Clear Lo 61 WEDNESDAY Mostly Sunny Hi 95"
+    prediction = x.predict(custom_tweet)
+    print(prediction)

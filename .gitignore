@@ -1,2 +1,4 @@
 .idea/
 .env
+twitter_auth.json
+*/__pycache__/
