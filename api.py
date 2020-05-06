@@ -25,7 +25,11 @@ async def get_tweets(lat: float, long: float, range: float = .05):
         query=query,
         enable_cross_partition_query=True))
     print(len(items))
-    return items
+
+    return {
+        "count": len(items),
+        "tweets": items
+    }
 
 
 @app.get("/region")
@@ -45,7 +49,11 @@ async def recent_tweets(lat1: float, long1: float, lat2: float, long2: float ):
     items = list(db_client.tweet_container.query_items(
         query=query,
         enable_cross_partition_query=True))
-    return items
+
+    return {
+        "count": len(items),
+        "tweets": items
+    }
 
 
 @app.get("/all")
@@ -57,4 +65,9 @@ async def get_all_tweets():
     items = list(db_client.tweet_container.query_items(
         query=query,
         enable_cross_partition_query=True))
-    return items
+
+    return {
+        "count": len(items),
+        "tweets": items
+    }
+
