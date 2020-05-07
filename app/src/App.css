@@ -1,0 +1,36 @@
+@import '~antd/dist/antd.css';
+@import "~react-vis/dist/style.css";
+
+
+.App {
+  text-align: center;
+  /* background-color: #536078; */
+  color: black;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+.leaflet-container {
+  min-height: 600px;
+  height: 60%;
+  width: 100%;
+}
+
+.leaflet-popup-content-wrapper {
+  min-width: 310px;
+}
+
+
+
+.EmbeddedTweet {
+  max-width: 100% !important;
+}
+
+.twitter-tweet, .twitter-tweet-rendered {
+  width: 800px !important;
+  margin: auto !important;
+}
+
+.rv-xy-plot {
+  margin: auto;
+}

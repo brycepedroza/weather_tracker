@@ -3,3 +3,4 @@
 twitter_auth.json
 /__pycache__/
 */__pycache__/
+sp_creds.json

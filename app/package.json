@@ -1,0 +1,52 @@
+{
+  "proxy": "http://localhost:8000/api",
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.2.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "immutable": "^4.0.0-rc.12",
+    "leaflet": "^1.6.0",
+    "mapbox-gl": "^1.10.0",
+    "pigeon-maps": "^0.15.0",
+    "pigeon-marker": "^0.3.4",
+    "pigeon-overlay": "^0.2.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-leaflet": "^2.7.0",
+    "react-map-gl": "^5.2.5",
+    "react-scripts": "3.4.1",
+    "react-stack-grid": "^0.7.1",
+    "react-twitter-embed": "^3.0.3",
+    "react-virtualized": "^9.21.2",
+    "react-virtualized-image-measurer": "^0.4.0",
+    "react-vis": "^1.11.7",
+    "react-window": "^1.8.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

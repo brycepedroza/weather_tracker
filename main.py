@@ -3,14 +3,32 @@ import time
 from fastapi import FastAPI
 from util.db_client import DBClient
 from dotenv import load_dotenv
-
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
-app = FastAPI()
+app = FastAPI(openapi_url="/api/openapi.json", docs_url="/api/docs")
 db_client = DBClient()
 
+origins = [
+    "http://localhost",
+    "http://localhost:8000"
+    "http://localhost:4000"
+    "http://api:8000",
+    "http://api:4000",
+    "http://app:8000",
+    "http://app:4000",
+]
 
-@app.get("/filter")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+@app.get("/api/filter")
 async def get_tweets(lat: float, long: float, range: float = .05):
     """
     Given a point, find all tweets in the range around it
@@ -32,8 +50,13 @@ async def get_tweets(lat: float, long: float, range: float = .05):
     }
 
 
-@app.get("/region")
-async def recent_tweets(lat1: float, long1: float, lat2: float, long2: float ):
+@app.get("/api/region")
+async def recent_tweets(
+    lat1:  float = 24.686952,
+    long1: float = -126.210938,
+    lat2:  float = 50.457504,
+    long2: float = -66.708984
+):
     """
     get a list all tweets in a region from the last 12 hours
     """
@@ -56,10 +79,10 @@ async def recent_tweets(lat1: float, long1: float, lat2: float, long2: float ):
     }
 
 
-@app.get("/all")
+@app.get("/api/all")
 async def get_all_tweets():
     """
-    get all tweets in a region from the last 12 hours
+    get all tweets
     """
     query = f"select * from c"
     items = list(db_client.tweet_container.query_items(
@@ -70,4 +93,3 @@ async def get_all_tweets():
         "count": len(items),
         "tweets": items
     }
-

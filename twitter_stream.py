@@ -9,12 +9,6 @@ from urllib3.exceptions import ReadTimeoutError
 
 load_dotenv()
 
-PHX = [-112.524719,33.275435,-111.619720,33.800832]
-CA_AZ_NV_UT = [-126.079102,31.090574,-108.720703,42.779275]
-WA_OR_ID_MT_VA = [-125.683594,41.902277,-110.566406,49.724479]
-AR_FL = [-94.790039,24.966140,-79.672852,36.597889]
-MN_IL = [-97.338867,36.562600,-87.495117,49.009051]
-KY_ME = [-89.252930,36.527295,-66.445313,47.754098]
 US = [-126.210938,24.686952,-66.708984,50.457504]
 
 
@@ -74,8 +68,7 @@ class Listener(tweepy.StreamListener):
 
 def main():
     # Init Twitter API
-    creds = read_json("./twitter_auth.json")
-    api = init_tweepy(creds)
+    api = init_tweepy()
 
     # Init Classifiers and DB Client
     db_client = DBClient()

@@ -1,0 +1,11 @@
+FROM python:3.7-slim-buster
+
+RUN pip install pipenv-to-requirements
+
+WORKDIR /app
+COPY ./ ./
+
+RUN pipenv_to_requirements && \
+    pip install -r requirements.txt
+
+CMD ["uvicorn","main:app"]
