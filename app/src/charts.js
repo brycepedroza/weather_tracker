@@ -6,7 +6,6 @@ import {
   VerticalGridLines,
   HorizontalGridLines,
   VerticalBarSeries,
-  VerticalBarSeriesCanvas
 } from 'react-vis';
 import { List, Card } from 'antd';
 
@@ -38,7 +37,7 @@ function generate_graphs(tweets){
 
   // UV Init
   let uv_interval = 1;
-  let uv_max = 10;
+  let uv_max = 12;
   let uv = [];
   for (let i = 0; i <= uv_max/uv_interval; i ++){
     uv.push({
@@ -57,19 +56,19 @@ function generate_graphs(tweets){
 
     // Temperature
     let temp_bin = Math.floor(tweet.temperature/temp_interval)
-    if (temp_bin >= 0) {
+    if (temp_bin >= 0 && temp_bin !== undefined && temp_bin <= temp_max/temp_interval) {
       temperature[temp_bin].data.push(tweet.sentiment)
     }
 
     // Humidity
     let humidity_bin = Math.floor(tweet.humidity/humidity_interval)
-    if (humidity_bin >= 0) {
+    if (humidity_bin >= 0 && humidity_bin !== undefined && humidity_bin <= humidity_max/humidity_interval) {
       humidity[humidity_bin].data.push(tweet.sentiment)
     }
 
     // Humidity
     let uv_bin = Math.floor(tweet.uv_index/uv_interval)
-    if (uv_bin >= 0 && uv_bin !== undefined) {
+    if (uv_bin >= 0 && uv_bin !== undefined && uv_bin <= uv_max/uv_interval) {
       uv[uv_bin].data.push(tweet.sentiment)
     }
 
@@ -196,7 +195,6 @@ export default class Example extends React.Component {
   }
 
   render() {
-    console.log(this.state.graphs.temperature)
     return (
       <div style={{padding: 25}}>
             <List

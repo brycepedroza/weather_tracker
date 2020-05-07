@@ -1,5 +1,5 @@
 on: [push]
-name: lolcounter container workflow
+name: weather tracker workflow
 
 jobs:
     build-and-deploy:
